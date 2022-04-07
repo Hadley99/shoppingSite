@@ -27,7 +27,7 @@ const Nav = () => {
         <NavLink
           to="/cart"
           className={({ isActive }) =>
-            isActive ? "bg-primary text-white px-2  rounded" : " px-2"
+            isActive ? "bg-primary text-white px-2   rounded" : " px-2"
           }
         >
           CART <span className="  rounded p-05 py-0  ">({cartQty.length})</span>

@@ -58,8 +58,9 @@ const Home = () => {
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold">All Products</h1>
         <div>
+          <span className="mr-2 font-medium">Sort By:</span>
           <select
-            className="rounded border focus-within:outline-none bg-white border-primary px-2 py-1 mr-3 font-medium"
+            className="rounded border focus-within:outline-none bg-white border-primary px-2 py-1 mr-4 font-medium"
             onChange={(e) => {
               const sort = e.target.value;
               handleSortChange(sort);
@@ -71,6 +72,7 @@ const Home = () => {
             <option value="lowToHigh">Low to high</option>
             <option value="highToLow">High to Low</option>
           </select>
+          <span className="mr-2 font-medium">Filter:</span>
           <select
             className="rounded border focus-within:outline-none bg-white border-primary px-2 py-1 font-medium"
             onChange={(e) => {
