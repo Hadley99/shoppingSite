@@ -9,6 +9,7 @@ const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
 
   const handleUserCredetials = () => {
@@ -17,21 +18,26 @@ const Login = () => {
   };
   const login = async () => {
     try {
+      setLoading(true);
       const user = await signInWithEmailAndPassword(
         auth,
         loginEmail,
         loginPassword
       );
-      // console.log(user);
-      navigate("/");
     } catch (error) {
       setErrorMessage(error.code);
-      //console.log(error.message);
     }
+    setLoading(false);
+    navigate("/");
   };
 
   return (
-    <form>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        login();
+      }}
+    >
       <div className="flex h-101  justify-center items-center ">
         <div className=" flex shadow-xl bg-white  flex-col rounded  w-96  px-10 pb-6 pt-8">
           <div className="flex justify-between items-center mb-6">
@@ -49,6 +55,7 @@ const Login = () => {
             </div>
           </div>
           <input
+            required
             value={loginEmail}
             onChange={(e) => {
               setLoginEmail(e.target.value);
@@ -58,6 +65,7 @@ const Login = () => {
             placeholder="Email"
           />
           <input
+            required
             value={loginPassword}
             onChange={(e) => {
               setLoginPassword(e.target.value);
@@ -67,9 +75,13 @@ const Login = () => {
             placeholder="Password"
           />
           <button
-            type="button"
-            onClick={login}
-            className=" bg-primary rounded text-white mb-8 font-bold py-2"
+            disabled={loading}
+            type="submit"
+            className={
+              loading
+                ? " bg-slate-300 rounded cursor-not-allowed text-white mb-8 font-bold py-2"
+                : " bg-primary rounded text-white mb-8 font-bold py-2"
+            }
           >
             Login
           </button>

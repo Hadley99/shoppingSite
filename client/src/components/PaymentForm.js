@@ -1,7 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useState } from "react";
 import axios from "axios";
-//import { useNavigate } from "react-router-dom";
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -24,7 +23,6 @@ const CARD_OPTIONS = {
 };
 
 const PaymentForm = ({ closeModal, price }) => {
-  //const navigate = useNavigate();
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();

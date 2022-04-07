@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -7,22 +7,31 @@ const Signup = () => {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
+
+  useEffect(() => {}, []);
   const registerUser = async () => {
     try {
+      setLoading(true);
       const user = await createUserWithEmailAndPassword(
         auth,
         registerEmail,
         registerPassword
       );
-      navigate("/");
     } catch (error) {
       setErrorMessage(error.code);
     }
+    setLoading(false);
+    navigate("/");
   };
-
   return (
-    <form>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        registerUser();
+      }}
+    >
       <div className="flex h-101  justify-center items-center ">
         <div className=" flex shadow-xl bg-white  flex-col rounded  w-96  px-10 pb-6 pt-8">
           <h1 className="text-2xl font-bold mb-6">Sign Up</h1>
@@ -47,9 +56,13 @@ const Signup = () => {
             }}
           />
           <button
-            type="button"
-            onClick={registerUser}
-            className=" bg-primary px-auto inline-block rounded text-white mb-8 font-bold py-2"
+            disabled={loading}
+            type="submit"
+            className={
+              loading
+                ? " bg-slate-500 rounded cursor-not-allowed text-white mb-8 font-bold py-2"
+                : " bg-primary rounded text-white mb-8 font-bold py-2"
+            }
           >
             Sign Up
           </button>
