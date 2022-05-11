@@ -19,11 +19,11 @@ const Signup = () => {
         registerEmail,
         registerPassword
       );
+      navigate("/");
     } catch (error) {
       setErrorMessage(error.code);
     }
     setLoading(false);
-    navigate("/");
   };
   return (
     <form

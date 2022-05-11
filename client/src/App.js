@@ -13,6 +13,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { setProducts } from "./redux/actions/productActions";
 import StripeContainer from "./components/StripeContainer";
 import YourOrders from "./components/YourOrders";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -41,29 +42,7 @@ const App = () => {
         setProducts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
       );
     };
-    //fetching user cart from db
-    const getUserCartFromDb = async () => {
-      // const q = query(collection(db, "cartAndOrder", userIdRef, "cart"));
-      // // const q = query(collectionGroup(db, "cartAndOrder", userIdRef, "cart"));
-      // const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      //   const cartFromDb = [];
-      //   querySnapshot.forEach((doc) => {
-      //     cartFromDb.push({ ...doc.data(), id: doc.id });
-      //   });
-      //   dispatch(setCart(cartFromDb));
-      //   dispatch(setCartQty(querySnapshot.docs.length));
-      // });
-      /////////////////
-      // const res = onSnapshot(collectionGroup(db, "cart"), (querrySnapshot) => {
-      //   const cartFromDb = [];
-      //   console.log(querrySnapshot);
-      //   querrySnapshot.docs.map((doc) => {
-      //     cartFromDb.push({ ...doc.data(), id: doc.id });
-      //     console.log(cartFromDb);
-      //   });
-      // });
-    };
-    getUserCartFromDb();
+
     getAllProductsFromDb();
   }, [userIdRef]);
   return (
@@ -76,7 +55,10 @@ const App = () => {
           <Route exact path="/cart" element={<Cart />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/login" element={<Login />} />
-          <Route exact path="/yourorders" element={<YourOrders />} />
+          <Route element={<ProtectedRoutes />}>
+            <Route exact path="/yourorders" element={<YourOrders />} />
+          </Route>
+
           <Route exact path="/stripepayment" element={<StripeContainer />} />
 
           <Route path="*" element={<Home />} />

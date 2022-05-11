@@ -24,11 +24,13 @@ const Login = () => {
         loginEmail,
         loginPassword
       );
+      if (user) {
+        navigate("/");
+      }
     } catch (error) {
       setErrorMessage(error.code);
     }
     setLoading(false);
-    navigate("/");
   };
 
   return (
