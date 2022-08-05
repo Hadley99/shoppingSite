@@ -14,12 +14,11 @@ const SingleCartProduct = ({
     <>
       <div className="col-span-5  shadow-md">
         <div className="grid bg-white grid-cols-5 rounded-md">
-          <div className="  col-span-1 ">
+          <div className="col-span-1">
             <div className="col-span-1 grid place-items-center">
               <img
-                width="80%"
                 src={product.image}
-                className="rounded-md"
+                className="rounded-md w-full"
                 alt={product.title}
               />
             </div>

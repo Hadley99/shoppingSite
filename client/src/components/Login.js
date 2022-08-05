@@ -41,7 +41,7 @@ const Login = () => {
       }}
     >
       <div className="flex h-101  justify-center items-center ">
-        <div className=" flex shadow-xl bg-white  flex-col rounded  w-96  px-10 pb-6 pt-8">
+        <div className=" flex md:shadow-xl md:bg-white  flex-col rounded  w-96  px-10 pb-6 pt-8">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-2xl font-bold ">Login</h1>
             <div

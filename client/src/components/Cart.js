@@ -43,6 +43,7 @@ const Cart = () => {
       // await updateDoc(userDoc, newFields);
     }
   };
+
   //Quantity increasing
   const handleQuantityIncrease = async (product) => {
     if (product.qty < 10) {
@@ -63,7 +64,7 @@ const Cart = () => {
       {openModal ? (
         <StripeContainer price={TotalCartPrice} closeModal={setOpenModal} />
       ) : (
-        <div className="container px-16 pt-16">
+        <div className="container md:px-16 px-4 pt-16">
           <div className="flex justify-between items-center">
             <h1 className="text-3xl font-bold">Cart</h1>
           </div>
@@ -71,7 +72,6 @@ const Cart = () => {
             <div className="grid grid-cols-5 text-xl font-medium text-center">
               <div></div>
               <div>Name</div>
-
               <div>Quantity</div>
               <div>Price</div>
               <div></div>

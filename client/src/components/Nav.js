@@ -15,7 +15,7 @@ const Nav = () => {
   };
   return (
     <>
-      <div className="grid  gird-rows-4 grid-flow-col text-sm font-medium text-primary  ">
+      <div className="grid  gird-rows-4 grid-flow-col text-sm text-center font-medium text-primary  ">
         <NavLink
           to="/"
           className={({ isActive }) =>
