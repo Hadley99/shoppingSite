@@ -47,7 +47,7 @@ const PaymentForm = ({ closeModal, price }) => {
     if (!error) {
       try {
         const { id } = paymentMethod;
-        const response = await axios.post("https://fresh-server.vercel.app/", {
+        const response = await axios.post("https://fresh-server.vercel.app/payment", {
           amount: price * 100,
           id,
         });
