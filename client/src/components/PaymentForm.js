@@ -52,15 +52,13 @@ const PaymentForm = ({ closeModal, price }) => {
           id,
         });
         if (response.data.success) {
-          console.log("Successful payment");
+
           setSuccess(true);
         }
-        console.log(response);
+
       } catch (error) {
-        console.log("Error", error);
+        throw new Error(error)
       }
-    } else {
-      console.log(error.message);
     }
   };
   if (success) {
