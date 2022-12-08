@@ -35,10 +35,10 @@ const PaymentForm = ({ closeModal, price }) => {
         name: "Elon Musk",
         address: {
           city: "Tbilisi",
-          country: "GE",
+          country: "IN",
           line1: "212134",
           line2: "124234",
-          postal_code: "12343",
+          postal_code: "575 014",
           state: null,
         },
       },
